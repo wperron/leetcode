@@ -3,15 +3,33 @@ function isPalindrome(s) {
 }
 
 function pal(s) {
-    let longest = ""
-    for (let i = 0; i < s.length; i++) {
-        for (let j = i + 1; j < s.length; j++) {
-            if (isPalindrome(s.slice(i, j)) && s.slice(i, j).length > longest.length) {
-                longest = s.slice(i, j)
-            } 
+    if (s.length <= 1) return s
+    if (isPalindrome(s)) return s
+    let start = 0
+    let max = 0
+    let i = 0
+    while (i < s.length) {
+        // initialize lower/upper bounds of substr
+        let left = i
+        let right = i
+        // guard clause if middle of palindrome has duplicates/even number of chars
+        while (right < s.length - 1 && s[right] === s[right + 1]) {
+            right++
+        }
+        i = right + 1 // set loop counter to next non-duplicate character
+        // while next chars outbound are equal, increment upper/lower bounds
+        while (right < s.length - 1 && left > 0 && s[right + 1] === s[left - 1]) {
+            right++
+            left--
+        }
+        // calculate new maximum length
+        let newlen = right - left + 1
+        if (newlen > max) {
+            start = left
+            max = newlen
         }
     }
-    return longest
+    return s.slice(start, start + max)
 }
 
 module.exports = {
