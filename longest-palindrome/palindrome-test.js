@@ -9,6 +9,7 @@ if (require.main === module) {
     assert.strictEqual(pal("a"), "a")
     assert.strictEqual(pal("bab"), "bab")
     assert.strictEqual(pal("baa"), "aa")
+    assert.strictEqual(pal("1abcdefgfedcba0"), "abcdefgfedcba")
 
     // test very long input
     assert.strictEqual(pal("jglknendplocymmvwtoxvebkekzfdhykknufqdkntnqvgfbahsljkobhbxkvyictzkqjqydczuxjkgecdyhixdttxfqmgksrkyvopwprsgoszftuhawflzjyuyrujrxluhzjvbflxgcovilthvuihzttzithnsqbdxtafxrfrblulsakrahulwthhbjcslceewxfxtavljpimaqqlcbrdgtgjryjytgxljxtravwdlnrrauxplempnbfeusgtqzjtzshwieutxdytlrrqvyemlyzolhbkzhyfyttevqnfvmpqjngcnazmaagwihxrhmcibyfkccyrqwnzlzqeuenhwlzhbxqxerfifzncimwqsfatudjihtumrtjtggzleovihifxufvwqeimbxvzlxwcsknksogsbwwdlwulnetdysvsfkonggeedtshxqkgbhoscjgpiel"), "sknks")
