@@ -1,0 +1,28 @@
+const assert = require('assert')
+const { itor } = require('./roman')
+
+if (require.main === module) {
+    // convert decimal integers to roman
+    assert.strictEqual(itor(1), "I")
+    assert.strictEqual(itor(4), "IV")
+    assert.strictEqual(itor(5), "V")
+    assert.strictEqual(itor(9), "IX")
+    assert.strictEqual(itor(10), "X")
+    assert.strictEqual(itor(14), "XIV")
+    assert.strictEqual(itor(15), "XV")
+    assert.strictEqual(itor(19), "XIX")
+    assert.strictEqual(itor(20), "XX")
+    assert.strictEqual(itor(39), "XXXIX")
+    assert.strictEqual(itor(40), "XL")
+    assert.strictEqual(itor(49), "XLIX")
+    assert.strictEqual(itor(50), "L")
+    assert.strictEqual(itor(54), "LIV")
+    assert.strictEqual(itor(99), "XCIX")
+    assert.strictEqual(itor(100), "C")
+    assert.strictEqual(itor(240), "CCXL")
+    assert.strictEqual(itor(245), "CCXLV")
+    assert.strictEqual(itor(499), "CDXCIX")
+    assert.strictEqual(itor(500), "D")
+    assert.strictEqual(itor(999), "CMXCIX")
+    assert.strictEqual(itor(1000), "M")
+}
