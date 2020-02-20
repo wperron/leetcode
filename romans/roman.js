@@ -15,6 +15,23 @@ function itor(n) {
         .replace(/DCD/g, 'CM')
 }
 
+function rtoi(r) {
+    return r.replace(/CM/g, "DCD")
+        .replace(/M/g, "DD")
+        .replace(/CD/g, "CCCC")
+        .replace(/D/g, "CCCCC")
+        .replace(/XC/g, "LXL")
+        .replace(/C/g, "LL")
+        .replace(/XL/g, "XXXX")
+        .replace(/L/g, "XXXXX")
+        .replace(/IX/g, "VIV")
+        .replace(/X/g, "VV")
+        .replace(/IV/g, "IIII")
+        .replace(/V/g, "IIIII")
+        .length
+}
+
 module.exports = {
     itor,
+    rtoi,
 }

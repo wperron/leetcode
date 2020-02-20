@@ -1,5 +1,5 @@
 const assert = require('assert')
-const { itor } = require('./roman')
+const { itor, rtoi } = require('./roman')
 
 if (require.main === module) {
     // convert decimal integers to roman
@@ -25,4 +25,28 @@ if (require.main === module) {
     assert.strictEqual(itor(500), "D")
     assert.strictEqual(itor(999), "CMXCIX")
     assert.strictEqual(itor(1000), "M")
+
+    // convert roman numeral to decimal integer
+    assert.strictEqual(rtoi("I"), 1)
+    assert.strictEqual(rtoi("IV"), 4)
+    assert.strictEqual(rtoi("V"), 5)
+    assert.strictEqual(rtoi("IX"), 9)
+    assert.strictEqual(rtoi("X"), 10)
+    assert.strictEqual(rtoi("XIV"), 14)
+    assert.strictEqual(rtoi("XV"), 15)
+    assert.strictEqual(rtoi("XIX"), 19)
+    assert.strictEqual(rtoi("XX"), 20)
+    assert.strictEqual(rtoi("XXXIX"), 39)
+    assert.strictEqual(rtoi("XL"), 40)
+    assert.strictEqual(rtoi("XLIX"), 49)
+    assert.strictEqual(rtoi("L"), 50)
+    assert.strictEqual(rtoi("LIV"), 54)
+    assert.strictEqual(rtoi("XCIX"), 99)
+    assert.strictEqual(rtoi("C"), 100)
+    assert.strictEqual(rtoi("CCXL"), 240)
+    assert.strictEqual(rtoi("CCXLV"), 245)
+    assert.strictEqual(rtoi("CDXCIX"), 499)
+    assert.strictEqual(rtoi("D"), 500)
+    assert.strictEqual(rtoi("CMXCIX"), 999)
+    assert.strictEqual(rtoi("M"), 1000)
 }
