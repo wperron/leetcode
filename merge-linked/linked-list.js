@@ -31,6 +31,16 @@ class LinkedList {
         return out.join(' -> ')
     }
 
+    toArray() {
+        let vals = []
+        let curr = this.head
+        while (curr !== null) {
+            vals.push(curr.data)
+            curr = curr.next
+        }
+        return vals
+    }
+
     push(n) {
         if (this.head === null) {
             this.head = new Node(n)
@@ -122,4 +132,5 @@ class LinkedList {
 
 module.exports = {
     LinkedList,
+    Node,
 }

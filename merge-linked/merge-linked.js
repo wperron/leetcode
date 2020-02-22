@@ -1,37 +1,37 @@
-const { LinkedList } = require('./linked-list')
+const { LinkedList, Node } = require('./linked-list')
 
-function convert(s) {
-    let ints = []
-    s.split('').forEach(c => {
-        const parsed = parseInt(c)
-        if (!isNaN(parsed)) {
-            ints.push(parsed)
+function merge(heads) {
+    const half = Math.ceil(heads.length / 2)
+    let left = heads.slice(0, half)
+    let right = heads.slice(half)
+    if (left.length > 1) left = merge(left)
+    else left = left[0]
+    if (right.length > 1) right = merge(right)
+    else right = right[0]
+
+    const start = new Node(-1)
+    let last = start
+    let i = left, j = right
+    while (i && j) {
+        if (i.data < j.data) {
+            last.next = i
+            last = i
+            i = i.next
+        } else {
+            last.next = j
+            last = j
+            j = j.next
         }
-    })
-    return ints
-}
-
-function merge(lists) {
-    let llists = []
-    lists.forEach(l => {
-        llists.push(new LinkedList(l))
-    })
-    let ref = llists.pop()
-    llists.forEach(l => {
-        for (const val of l) {
-            ref.push(val)
-        }
-    })
-    return ref.sort()
-}
-
-var mergeKLists = function(lists) {
-    let flat = []
-    Array.prototype.push.apply(flat, lists[0])
-    return flat.sort()
+    }
+    if (i !== null) {
+        last.next = i
+    }
+    if (j !== null) {
+        last.next = j
+    }
+    return start.next
 }
 
 module.exports = {
     merge,
-    mergeKLists,
 }
