@@ -15,11 +15,24 @@ if (require.main === module) {
 
     let newhead = removenth(n1, 2)
     let last = newhead
-    const arr =[]
+    let arr = []
     while (last !== null) {
         arr.push(last.data)
         last = last.next
     }
 
     assert.deepStrictEqual(arr, [1, 2, 3, 5])
+
+    n1 = new Node(1)
+    n2 = new Node(2)
+    n1.next = n2
+    newhead = removenth(n1, 1)
+    last = newhead
+    arr = []
+    while (last !== null) {
+        arr.push(last.data)
+        last = last.next
+    }
+
+    assert.deepStrictEqual(arr, [1])
 }

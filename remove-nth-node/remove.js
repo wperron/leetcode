@@ -6,23 +6,23 @@ const { Node, LinkedList } = require('../merge-linked/linked-list')
  * @param {Number} n
  */
 function removenth(head, n) {
-    let arr = []
+    if (head.next === null) return null
+    let buf = []
     let last = head
     while (last !== null) {
-        arr.push(last.data)
+        buf.push(last)
+        buf = buf.slice(-n - 1)
         last = last.next
     }
 
-    let newhead = new Node('')
-    let next = newhead
-    for (let i = 0; i < arr.length; i++) {
-        if (i !== arr.length - n) {
-            let n = new Node(arr[i])
-            next.next = n
-            next = n
-        }
+    // handle case where n is equal to the length of the list, thus removing the first item
+    if (buf.length > n) {
+        buf[0].next = buf[2] ? buf[2] : null
+        return head
     }
-    return newhead.next
+    else {
+        return head.next
+    }
 }
 
 module.exports = {
