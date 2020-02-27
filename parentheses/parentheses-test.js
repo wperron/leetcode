@@ -9,7 +9,7 @@ function testValid() {
 }
 
 function testGenerate() {
-    generate(3)
+    console.log(generate(3))
 }
 
 if (require.main === module) {

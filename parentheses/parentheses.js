@@ -18,38 +18,21 @@ function valid(s) {
 
 // find all paths through graph
 function generate(n) {
-    let set = ['(']
-    let len = 1
-    while (len < n * 2) { // keep going while permutations are less than twice the limit
-        let tmp = []
-        for (let i = 0; i < set.length; i++) { // for every known path
-            let curr = set[i]
-            let groups = 0  // number of logical groups, ex: ()(()) -> 3 groups
-            let stack  = [] // stack of opened groups
-            for (let j = 0; j < curr.length; j++) {
-                if (curr[j] === '(') {
-                    groups++
-                    stack.push(curr[j])
-                }
-                else {
-                    stack.pop()
-                }
-            }
-
-            if (groups === n) {
-                tmp.push(curr + ')')
-            }
-            else if (stack.length > 0) {
-                tmp.push(curr + '(', curr + ')')
-            }
-            else {
-                tmp.push(curr + '(')
-            }
-            len = curr.length + 1
-        }
-        set = tmp
+    const set = {
+        ['()'.repeat(n)]: true,
+        ['('.repeat(n) + ')'.repeat(n)]: true,
     }
-    return set
+
+    for (let i = 1; i < n; i++) {
+        generate(i).forEach(g1 => {
+            generate(n - i).forEach(g2 => {
+                set[g1.slice(0, g1.length / 2) + g2 + g1.slice(g1.length / 2)] = true
+                set[g1 + g2] = true
+            })
+        })
+    }
+
+    return Object.keys(set)
 }
 
 module.exports = {
