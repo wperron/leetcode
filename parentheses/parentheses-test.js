@@ -1,9 +1,18 @@
 const assert = require('assert')
-const { valid } = require('./parentheses')
+const { valid, generate } = require('./parentheses')
 
-if (require.main === module) {
+function testValid() {
     assert.strictEqual(valid('[](){}'), true)
     assert.strictEqual(valid('()'), true)
     assert.strictEqual(valid('{[}'), false)
     assert.strictEqual(valid('({[]{}})((()))'), true)
+}
+
+function testGenerate() {
+    generate(3)
+}
+
+if (require.main === module) {
+    testValid()
+    testGenerate()
 }

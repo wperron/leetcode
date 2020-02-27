@@ -16,6 +16,21 @@ function valid(s) {
     return stack.length === 0
 }
 
+// find all paths through graph
+function generate(n) {
+    let set = ['('] // all combinations must start with an opened bracket
+    for (let i = 0; i < (n * 2) - 1; i++) {
+        let tmp = []
+        for (let j = 0; j < set.length; j++) {
+            tmp.push(set[j] + ')')
+            tmp.push(set[j] + '(')
+        }
+        set = tmp
+    }
+    return set.filter(s => valid(s))
+}
+
 module.exports = {
     valid,
+    generate,
 }
